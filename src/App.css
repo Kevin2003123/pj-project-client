@@ -1,0 +1,67 @@
+body, html{
+    width: 100%;
+    height: 100%;
+}
+.title1{
+    font-size: 3rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+}
+.title2{
+    font-size: 2rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.label{
+font-size: 1.5rem;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.login-w{
+    width: 25rem;
+    height: 34rem;
+}
+
+.register-w{
+    width: 25rem;
+    height: 50rem;
+}
+
+.logo-w{
+    width: 3rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.search-w{
+    width: 45rem;
+    height: 2.5rem;
+    text-transform: uppercase;
+}
+
+.login-input-w{
+    width: 20rem;
+}
+
+.uploadAvatar-w{
+    width: 70rem;
+    height: 30rem;
+}
+
+
+.bg-photo {
+    background: url('./img/fondo-camaras.jpg') no-repeat center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+  }
+
+
+  .transparentCover {
+  background-color: rgba(238, 234, 234, 0.39) ;
+  z-index: -1;
+  position: absolute;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
