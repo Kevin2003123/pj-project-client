@@ -70,11 +70,11 @@ const Register = ({ register, error }) => {
             className='flex flex-col items-center'
           >
             <div className='my-3 w-full'>
-              <label htmlFor='email' className='label block'>
+              <label htmlFor='name' className='label block'>
                 Full Name
               </label>
               <input
-                type='name'
+                type='text'
                 name='name'
                 value={name}
                 placeholder='Jhon Doe'

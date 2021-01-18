@@ -5,6 +5,7 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Photos from './components/homePage/Photos';
 import UploadAvatar from './components/images/UploadAvatar';
+import MyProfile from './components/profile/MyProfile';
 import { loadUser } from './actions/auth';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -20,10 +21,11 @@ const App = () => {
       <Router>
         <Fragment>
           <Switch>
-            <Route exact path='/' component={Login} />
+            <Route exact path='/' component={Photos} />
             <Route exact path='/register' component={Register} />
-            <Route exact path='/photos' component={Photos} />
+            <Route exact path='/login' component={Login} />
             <Route exact path='/uploadAvatar' component={UploadAvatar} />
+            <Route exact path='/myProfile' component={MyProfile} />
           </Switch>
         </Fragment>
       </Router>

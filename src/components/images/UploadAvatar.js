@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer';
 import { useDropzone } from 'react-dropzone';
 import { updateAvatar } from '../../actions/images';
 import { connect } from 'react-redux';
-const UploadAvatar = ({ updateAvatar }) => {
+import { showUploadAvatar } from '../../actions/utils';
+
+const UploadAvatar = ({
+  updateAvatar,
+  uploadAvatar,
+  uploadAvatarError,
+  loadingAvatar,
+  showUpdateAvatar,
+  showUploadAvatar
+}) => {
+  const [hide, setHide] = useState('');
+  const [uploadSuccess, setUploadSuccess] = useState('');
   const [files, setFiles] = useState([]);
   const {
     acceptedFiles,
@@ -55,19 +66,33 @@ const UploadAvatar = ({ updateAvatar }) => {
     </div>
   ));
 
+  useEffect(() => {
+    if (uploadAvatar && !uploadAvatarError && !loadingAvatar) {
+      setUploadSuccess('Upload Success');
+    } else if (!uploadAvatar && uploadAvatarError && !loadingAvatar) {
+      setUploadSuccess('Unable to upload');
+    }
+    console.log(uploadAvatar, uploadAvatarError, loadingAvatar);
+  }, [uploadAvatar, uploadAvatarError, loadingAvatar]);
+
   const SendImage = () => {
     if (acceptedFileItems.length > 0) {
       acceptedFiles.map((file) => updateAvatar(file));
     } else {
-      console.log('no hay nada');
+      setUploadSuccess('Unable to upload');
     }
   };
   return (
-    <div className='relative flex flex-col w-full items-center justify-center h-screen bg-transparent m-0 p-0'>
-      <div className='relative flex flex-col items-center justify-center w-full shadow-md border uploadAvatar-w'>
+    <div
+      className={`absolute flex flex-col w-full items-center justify-center h-screen bg-black m-0 p-0 bg-opacity-80 ${showUpdateAvatar} z-40 `}
+    >
+      <div className='relative flex flex-col items-center justify-center w-full shadow-md border uploadAvatar-w bg-white'>
         <div className='flex flex-row px-3 mb-auto pt-3 border-b-2 shadow-md pb-3 w-full items-center'>
           <h1 className='text-2xl'>Select profile photo</h1>
-          <i className='fas fa-times ml-auto'></i>
+          <i
+            onClick={() => showUploadAvatar('hidden')}
+            className='fas fa-times ml-auto cursor-pointer'
+          ></i>
         </div>
 
         <div
@@ -86,6 +111,7 @@ const UploadAvatar = ({ updateAvatar }) => {
             <div className='flex flex-col'>
               <ul>{acceptedFileItems}</ul>
               <ul>{fileRejectionItems}</ul>
+              {uploadSuccess}
             </div>
           </div>
         </div>
@@ -97,7 +123,10 @@ const UploadAvatar = ({ updateAvatar }) => {
           >
             Set as profile photo
           </button>
-          <button className='bg-gray-200 hover:bg-gray-300 rounded px-2 py-1'>
+          <button
+            className='bg-gray-200 hover:bg-gray-300 rounded px-2 py-1'
+            onClick={() => showUploadAvatar('hidden')}
+          >
             Cancel
           </button>
         </div>
@@ -106,5 +135,20 @@ const UploadAvatar = ({ updateAvatar }) => {
   );
 };
 
-UploadAvatar.propTypes = { updateAvatar: PropTypes.func.isRequired };
-export default connect(null, { updateAvatar })(UploadAvatar);
+UploadAvatar.propTypes = {
+  updateAvatar: PropTypes.func.isRequired,
+  uploadAvatar: PropTypes.bool.isRequired,
+  uploadAvatarError: PropTypes.string.isRequired,
+  loadingAvatar: PropTypes.bool.isRequired,
+  showUploadAvatar: PropTypes.func.isRequired,
+  showUpdateAvatar: PropTypes.string.isRequired
+};
+const mapStateToProps = (state) => ({
+  uploadAvatar: state.image.uploadAvatar,
+  uploadAvatarError: state.image.error,
+  loadingAvatar: state.image.loadingAvatar,
+  showUpdateAvatar: state.util.showUploadAvatar
+});
+export default connect(mapStateToProps, { updateAvatar, showUploadAvatar })(
+  UploadAvatar
+);
