@@ -21,7 +21,8 @@ const Photos = ({
   setPage,
   search,
   setSearch,
-  imageUpload
+  imageUpload,
+  loadingImages
 }) => {
   useEffect(() => {
     getImages(page, search);
@@ -84,7 +85,11 @@ const Photos = ({
       </div>
       <div className='relative flex flex-wrap '>
         {images.map((image) => (
-          <ImageItems image={image} key={uuidv4()} />
+          <ImageItems
+            image={image}
+            loadingImages={loadingImages}
+            key={uuidv4()}
+          />
         ))}
       </div>
       <nav className='flex flex-row bg-white shadow-md w-64 mx-auto justify-center rounded-full border bg-blue-500 mb-4 font-bold text-white mt-4'>
@@ -126,7 +131,8 @@ Photos.propTypes = {
   setPage: PropTypes.func.isRequired,
   search: PropTypes.string.isRequired,
   setSearch: PropTypes.func.isRequired,
-  imageUpload: PropTypes.object.isRequired
+  imageUpload: PropTypes.object.isRequired,
+  loadingImages: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -135,7 +141,8 @@ const mapStateToProps = (state) => ({
   images: state.image.images,
   page: state.util.page,
   search: state.util.search,
-  imageUpload: state.image.imageUpload
+  imageUpload: state.image.imageUpload,
+  loadingImages: state.image.loadingImages
 });
 export default connect(mapStateToProps, { getImages, setPage, setSearch })(
   Photos

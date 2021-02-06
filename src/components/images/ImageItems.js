@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
-
-const ImageItems = ({ image }) => {
+import loading from '../../img/loading.gif';
+const ImageItems = ({ image, loadingImages }) => {
   const [show, setShow] = useState('hidden');
 
   return (
@@ -11,13 +11,17 @@ const ImageItems = ({ image }) => {
       onMouseEnter={() => setShow('')}
       onMouseLeave={() => setShow('hidden')}
     >
-      <a href={image.src} className=''>
-        <img
-          src={image.src}
-          alt=''
-          className='relative cursor-pointer img-w '
-        />
-      </a>
+      {loadingImages ? (
+        <img src={loading} alt='loading gift' className='relative img-w' />
+      ) : (
+        <a href={image.src} className=''>
+          <img
+            src={image.src}
+            alt=''
+            className='relative cursor-pointer img-w '
+          />
+        </a>
+      )}
 
       <span
         className={`flex flex-row items-center absolute bottom-0 left-0  text-white w-full bg-black bg-opacity-50 ${show}`}
