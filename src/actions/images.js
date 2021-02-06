@@ -2,7 +2,7 @@ import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 const CLAUDINARY_URL = 'https://api.cloudinary.com/v1_1/dfgmjyagu/image/upload';
 const CLAUDINARY_UPLOAD_PRESET = 'usobgzw4';
-const url = 'https://pj-images-server.herokuapp.com/';
+const url = 'https://pj-images-server.herokuapp.com';
 
 export const updateAvatar = (image) => async (dispatch) => {
   const config = {

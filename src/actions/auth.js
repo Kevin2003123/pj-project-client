@@ -2,7 +2,7 @@ import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 //lOAD User
 
-const url = 'https://pj-images-server.herokuapp.com/';
+const url = 'https://pj-images-server.herokuapp.com';
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
