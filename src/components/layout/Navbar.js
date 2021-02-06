@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { showUploadAvatar, resetPage, setSearch } from '../../actions/utils';
+import {
+  showUploadAvatar,
+  resetPage,
+  setSearch,
+  showUploadImage
+} from '../../actions/utils';
 import { getImages } from '../../actions/images';
-
+import UploadImage from '../images/UploadImage';
+import { logout } from '../../actions/auth';
 const Navbar = ({
   isAuthenticated,
   user,
@@ -13,9 +19,18 @@ const Navbar = ({
   images,
   page,
   resetPage,
-  setSearch
+  setSearch,
+  showUploadImage,
+  logout
 }) => {
   const [show, setShow] = useState({ isclicked: false, show: 'hidden' });
+  const [showUser, setShowUser] = useState('');
+
+  useEffect(() => {
+    console.log('tratando de esconder');
+
+    isAuthenticated ? setShowUser('') : setShowUser('hidden');
+  }, [isAuthenticated]);
 
   const dropDown = () => {
     if (!show.isclicked) {
@@ -31,35 +46,48 @@ const Navbar = ({
     resetPage();
   };
 
+  const logOut = () => {
+    logout();
+    setShow({ isclicked: false, show: 'hidden' });
+  };
+
   return (
-    <div className='w-full relative'>
-      <nav className=' bg-gray-900 flex flex-row py-2 items-center relative'>
-        <i className='fas fa-camera-retro text-blue-500 ml-3 fa-3x m-0 p-0  m-0 p-0 z-40'></i>
+    <div className='w-full relative '>
+      <nav className=' bg-gray-800 flex flex-row py-2 items-center relative h-20'>
+        <i className='fas fa-camera-retro text-blue-600 ml-3 fa-3x m-0 p-0  m-0 p-0 z-40'></i>
         <div className='bg-white logo-w ml-3 absolute z-30 '></div>
 
-        <h1 className=' font-bold text-lg text-white ml-2'>Shared Photos </h1>
+        <h1 className=' font-bold text-lg text-white ml-2 nav-title d-sm'>
+          <span className='text-blue-500 '>Shared</span> Photos
+        </h1>
 
         <input
           type='search'
-          className='ml-8 search-w pl-4 font-medium'
+          className='ml-8 search-w pl-4 font-medium mr-3 sm-ml'
           placeholder='Search for free photos'
           onChange={(e) => onChange(e.target.value)}
         />
 
+        <h4 className={`text-white font-bold ml-auto welcome d-sm ${showUser}`}>
+          <span className='text-blue-500'>Welcome</span> {user.name}
+        </h4>
         <img
-          className='ml-auto mr-3 rounded-full h-16 w-16 flex items-center justify-center hover:bg-blue-600 cursor-pointer'
+          className={`ml-auto mr-3 rounded-full h-14 w-14 flex items-center justify-center cursor-pointer object-cover ${showUser}`}
           onClick={() => dropDown()}
           src={user.avatar}
           alt={user.name}
         />
       </nav>
+
       <span
-        className={`absolute  h-64 w-64 right-0 mr-3 mt-2 rounded shadow-md flex flex-col items-center ${show.show} z-40 bg-white`}
+        className={`absolute  w-64 right-0 mr-3 mt-2 rounded shadow-md flex flex-col items-center ${show.show} z-40 bg-white`}
       >
         <div className='relative flex flex-row justify-center h-16 mt-3 '>
-          <div className=' flex flex-row text-white bg-blue-500 rounded-full h-16 w-16 items-center justify-center'>
-            avatar
-          </div>
+          <img
+            src={user.avatar}
+            alt={user.name}
+            className='rounded-full h-16 w-16 object-cover'
+          />
 
           <i
             onClick={() => showUploadAvatar('')}
@@ -76,10 +104,18 @@ const Navbar = ({
         >
           Manage your Account
         </Link>
-
+        <div
+          className='border rounded-full py-1 px-4 mt-3 hover:bg-gray-100 cursor-pointer'
+          onClick={() => showUploadImage('')}
+        >
+          Upload image
+        </div>
         <hr className='w-full mt-5' />
 
-        <button className='border rounded-full py-1 px-4 mt-3 hover:bg-gray-100 '>
+        <button
+          className='border rounded-full py-1 px-4 my-3 hover:bg-gray-100 cursor-pointer '
+          onClick={() => logOut()}
+        >
           Log Out
         </button>
       </span>
@@ -94,7 +130,9 @@ Navbar.propTypes = {
   images: PropTypes.object.isRequired,
   getImages: PropTypes.func.isRequired,
   resetPage: PropTypes.func.isRequired,
-  setSearch: PropTypes.func.isRequired
+  setSearch: PropTypes.func.isRequired,
+  showUploadImage: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -106,5 +144,7 @@ export default connect(mapStateToProps, {
   showUploadAvatar,
   getImages,
   resetPage,
-  setSearch
+  setSearch,
+  showUploadImage,
+  logout
 })(Navbar);

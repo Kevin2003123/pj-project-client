@@ -1,7 +1,9 @@
 const initialState = {
   showUploadAvatar: 'hidden',
   page: 1,
-  search: ''
+  search: '',
+  showUploadImageWindow: 'hidden',
+  showSpin: 'hidden'
 };
 
 const util = (state = initialState, action) => {
@@ -13,7 +15,11 @@ const util = (state = initialState, action) => {
         ...state,
         showUploadAvatar: payload
       };
-
+    case 'SET_SHOW_UPLOAD_IMAGE':
+      return {
+        ...state,
+        showUploadImageWindow: payload
+      };
     case 'SET_PAGE':
       return {
         ...state,
@@ -30,6 +36,12 @@ const util = (state = initialState, action) => {
       return {
         ...state,
         search: payload
+      };
+
+    case 'SHOW_SPIN':
+      return {
+        ...state,
+        showSpin: payload
       };
 
     default:

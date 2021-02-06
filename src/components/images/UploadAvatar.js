@@ -5,19 +5,29 @@ import Footer from '../layout/Footer';
 import { useDropzone } from 'react-dropzone';
 import { updateAvatar } from '../../actions/images';
 import { connect } from 'react-redux';
-import { showUploadAvatar } from '../../actions/utils';
-
+import { showUploadAvatar, setShowSpin } from '../../actions/utils';
+import { loadUser } from '../../actions/auth';
 const UploadAvatar = ({
   updateAvatar,
   uploadAvatar,
   uploadAvatarError,
   loadingAvatar,
   showUpdateAvatar,
-  showUploadAvatar
+  showUploadAvatar,
+  avatar,
+  loadUser,
+  showSpin,
+  setShowSpin
 }) => {
+  useEffect(() => {
+    showUploadAvatar('hidden');
+    setShowSpin('hidden');
+    loadUser();
+  }, [avatar]);
   const [hide, setHide] = useState('');
   const [uploadSuccess, setUploadSuccess] = useState('');
   const [files, setFiles] = useState([]);
+
   const {
     acceptedFiles,
     fileRejections,
@@ -78,15 +88,16 @@ const UploadAvatar = ({
   const SendImage = () => {
     if (acceptedFileItems.length > 0) {
       acceptedFiles.map((file) => updateAvatar(file));
+      setShowSpin('');
     } else {
       setUploadSuccess('Unable to upload');
     }
   };
   return (
     <div
-      className={`absolute flex flex-col w-full items-center justify-center h-screen bg-black m-0 p-0 bg-opacity-80 ${showUpdateAvatar} z-40 `}
+      className={`absolute flex flex-col w-full items-center  h-full bg-black m-0 p-0 bg-opacity-80 ${showUpdateAvatar} z-40 `}
     >
-      <div className='relative flex flex-col items-center justify-center w-full shadow-md border uploadAvatar-w bg-white'>
+      <div className='relative flex flex-col items-center justify-center w-full shadow-md border uploadAvatar-w bg-white upload-avatar-m'>
         <div className='flex flex-row px-3 mb-auto pt-3 border-b-2 shadow-md pb-3 w-full items-center'>
           <h1 className='text-2xl'>Select profile photo</h1>
           <i
@@ -111,7 +122,10 @@ const UploadAvatar = ({
             <div className='flex flex-col'>
               <ul>{acceptedFileItems}</ul>
               <ul>{fileRejectionItems}</ul>
-              {uploadSuccess}
+              <ul className={`${showSpin}`}>{uploadSuccess}</ul>
+            </div>
+            <div className={`ml-3 ${showSpin}`}>
+              <i className='fas fa-spinner spin'></i>
             </div>
           </div>
         </div>
@@ -141,14 +155,23 @@ UploadAvatar.propTypes = {
   uploadAvatarError: PropTypes.string.isRequired,
   loadingAvatar: PropTypes.bool.isRequired,
   showUploadAvatar: PropTypes.func.isRequired,
-  showUpdateAvatar: PropTypes.string.isRequired
+  showUpdateAvatar: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+  loadUser: PropTypes.func.isRequired,
+  showSpin: PropTypes.string.isRequired,
+  setShowSpin: PropTypes.func.isRequired
 };
 const mapStateToProps = (state) => ({
   uploadAvatar: state.image.uploadAvatar,
   uploadAvatarError: state.image.error,
   loadingAvatar: state.image.loadingAvatar,
-  showUpdateAvatar: state.util.showUploadAvatar
+  showUpdateAvatar: state.util.showUploadAvatar,
+  avatar: state.image.avatar,
+  showSpin: state.util.showSpin
 });
-export default connect(mapStateToProps, { updateAvatar, showUploadAvatar })(
-  UploadAvatar
-);
+export default connect(mapStateToProps, {
+  updateAvatar,
+  showUploadAvatar,
+  loadUser,
+  setShowSpin
+})(UploadAvatar);

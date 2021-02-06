@@ -33,13 +33,18 @@ const Login = ({ login, error, isAuthenticated }) => {
     login(email, password);
   };
 
+  if (isAuthenticated) {
+    return <Redirect to='/' />;
+  }
+
   return (
     <div className='flex flex-col items-center bg-photo h-screen'>
-      <div className='transparentCover'></div>
       <div className='flex flex-row  shadow-md bg-white  px-2 py-3 mt-0 border-b-2  w-full justify-center items-center '>
         <div className='absolute flex flex-row items-center'>
           <i className='fas fa-camera-retro text-blue-500 fa-3x mr-2'></i>
-          <h1 className='title2 font-bold'>Shared Photos </h1>
+          <h1 className='title2 font-bold'>
+            <span className='text-blue-500'>Shared</span> Photos{' '}
+          </h1>
         </div>
 
         <p className='ml-auto mr-2'>

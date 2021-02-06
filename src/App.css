@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bree+Serif&family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 body, html{
     width: 100%;
     height: 100%;
+    position: relative;
+}
+*{
+    box-sizing: border-box;
 }
 .title1{
     font-size: 3rem;
@@ -8,7 +15,7 @@ body, html{
 }
 .title2{
     font-size: 2rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Yusei Magic', sans-serif;
 }
 
 .label{
@@ -34,7 +41,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .search-w{
-    width: 45rem;
+    width: 70%;
     height: 2.5rem;
     text-transform: uppercase;
 }
@@ -58,10 +65,136 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 
   .transparentCover {
-  background-color: rgba(238, 234, 234, 0.39) ;
-  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.37) ;
   position: absolute;
   background-size: cover;
   width: 100%;
   height: 100%;
 }
+
+
+.min-width{
+flex-shrink: 1;
+flex-grow: 1;
+height: 20rem;
+min-width: 20%;
+max-width: 50%;
+}
+
+
+.img-w{
+  
+  height: 100%;
+   width: 100%;
+   object-fit: cover;
+   
+
+}  
+
+.h-screen-landing-img{
+width: 100vw;
+height: 90vh;
+object-fit: cover;
+object-position: center;
+}
+
+.center{
+    top: 50%;
+    left: 50%;
+}
+
+.title{
+    font-family: 'Yusei Magic', sans-serif;
+}
+
+.nav-title{
+    font-family:'Yusei Magic', sans-serif ;
+}
+
+.welcome{
+    font-family: 'Bree Serif', serif;
+}
+
+.profile-name{
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.upload-w{
+width: 80rem;
+height: 31rem;
+}
+
+.image-name{
+    grid-area:image-name;
+}
+.image-description{
+    grid-area: image-description;
+}
+.drop-image{
+    grid-area: drop-image;
+}
+.send-upload{
+    grid-area: send-upload; 
+}
+.grid-area{
+grid-template-areas: 'image-name  drop-image drop-image'
+'image-description drop-image drop-image'
+'send-upload send-upload send-upload';
+grid-template-rows: 0.5fr 1fr 4rem;
+grid-template-columns: 1fr 2fr 1fr;
+}
+
+.upload-image-w{
+    width: 100%;
+    height: 82%;
+}
+.upload-avatar-m{
+    margin-top: 7rem;
+}
+.scroll{
+overflow-y: hidden;
+height: 100vh;
+}
+.profile-grid-w{
+grid-template-columns: 3fr 2fr;
+}
+
+.spin{
+    
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+@media only screen and (max-width: 540px) and (min-width:500px){
+.d-sm{
+    display: none;
+}
+.sm-ml{
+    margin-left: 0.75rem;
+}
+}
+
+@media only screen and (max-width: 499px){
+    .d-sm{
+        display: none;
+    }
+    .sm-ml{
+        margin-left: 0.75rem;
+        font-size: 0.90rem;
+    }
+}
+
+@media(max-width: 850px){
+    .min-width{
+        flex-shrink: 1;
+        flex-grow: 1;
+        height: 20rem;
+        min-width: 50%;
+        max-width: 100%;
+        }
+} 

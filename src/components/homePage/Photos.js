@@ -9,6 +9,8 @@ import ImageItems from '../images/ImageItems';
 import { v4 as uuidv4 } from 'uuid';
 import Gallery from 'react-photo-gallery';
 import { setPage, setSearch } from '../../actions/utils';
+import { Link } from 'react-router-dom';
+import UploadImage from '../images/UploadImage';
 
 const Photos = ({
   isAuthenticated,
@@ -18,11 +20,18 @@ const Photos = ({
   page,
   setPage,
   search,
-  setSearch
+  setSearch,
+  imageUpload
 }) => {
   useEffect(() => {
     getImages(page, search);
-  }, [getImages, page, search]);
+  }, [getImages, page, search, imageUpload]);
+
+  useEffect(() => {
+    isAuthenticated ? setShow('hidden') : setShow('');
+  }, [isAuthenticated]);
+
+  const [show, setShow] = useState('');
 
   const preview = () => {
     if (page > 1) {
@@ -38,43 +47,67 @@ const Photos = ({
   };
 
   return (
-    <div className='flex flex-col relative z-30 h-screen '>
+    <div className='flex flex-col relative z-30 h-full w-full'>
       <Navbar />
 
       <UploadAvatar />
-      <div className='relative flex flex-wrap justify-center py-12 '>
+      <UploadImage />
+      <div className='flex flex-row relative items-center justify-center '>
+        <img
+          src='https://source.unsplash.com/1600x900/?nature'
+          alt='Random nature'
+          className='h-screen-landing-img'
+        />
+        <div className='absolute -mt-12 z-20'>
+          <h1 className=' text-white  text-4xl font-semibold title  text-center mb-4'>
+            The best photos shared by talented creators
+          </h1>
+          <div className='flex flex-row justify-center'>
+            <Link to='/login'>
+              <button
+                className={`bg-gray-300  px-4 py-2 rounded hover:bg-gray-400 hover:text-white  mr-7 profile-name ${show}`}
+              >
+                Sign In
+              </button>
+            </Link>
+            <Link to='/register'>
+              <button
+                className={`bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 hover:text-white   profile-name ${show}`}
+              >
+                Sign Up
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        <div className='transparentCover z-10'></div>
+      </div>
+      <div className='relative flex flex-wrap '>
         {images.map((image) => (
           <ImageItems image={image} key={uuidv4()} />
         ))}
       </div>
-      <nav className='flex flex-row bg-white shadow-md w-64 mx-auto justify-center rounded-full border bg-gray-300 mb-4 font-semibold '>
+      <nav className='flex flex-row bg-white shadow-md w-64 mx-auto justify-center rounded-full border bg-blue-500 mb-4 font-bold text-white mt-4'>
         {page > 1 ? (
           <div
             onClick={() => preview()}
-            className='mr-auto cursor-pointer w-24 text-center border-r-2 border-white rounded-l-full hover:bg-gray-400'
+            className='mr-auto cursor-pointer w-24 text-center border-r-2 border-white rounded-l-full hover:bg-blue-600'
           >
-            Previews
+            <i class='fas fa-chevron-left'></i>
           </div>
         ) : (
-          <div
-            onClick={() => preview()}
-            className='mr-auto  w-24 text-center border-r-2 border-white rounded-l-full text-white'
-          >
-            Previews
-          </div>
+          <div className='mr-auto  w-24 text-center border-r-2 border-white rounded-l-full text-white'></div>
         )}
 
-        <div className='text-blue-900'>{page}</div>
+        <div className='text-white font-bold'>{page}</div>
         {images.some((image) => image.id === lastImage) ? (
-          <div className='ml-auto w-24 text-center border-l-2 border-white rounded-r-full text-white'>
-            Next
-          </div>
+          <div className='ml-auto w-24 text-center border-l-2 border-white rounded-r-full text-white'></div>
         ) : (
           <div
             onClick={() => next()}
-            className='ml-auto cursor-pointer w-24 text-center border-l-2 border-white rounded-r-full  hover:bg-gray-400'
+            className='ml-auto cursor-pointer w-24 text-center border-l-2 border-white rounded-r-full  hover:bg-blue-600'
           >
-            Next
+            <i class='fas fa-chevron-right'></i>
           </div>
         )}
       </nav>
@@ -92,7 +125,8 @@ Photos.propTypes = {
   page: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired,
   search: PropTypes.string.isRequired,
-  setSearch: PropTypes.func.isRequired
+  setSearch: PropTypes.func.isRequired,
+  imageUpload: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -100,7 +134,8 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
   images: state.image.images,
   page: state.util.page,
-  search: state.util.search
+  search: state.util.search,
+  imageUpload: state.image.imageUpload
 });
 export default connect(mapStateToProps, { getImages, setPage, setSearch })(
   Photos

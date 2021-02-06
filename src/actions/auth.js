@@ -17,6 +17,7 @@ export const loadUser = () => async (dispatch) => {
   const body = {
     query: `mutation{
       auth(token:"${localStorage.getItem('token')}"){
+        id
         name
         email
         avatar
@@ -115,8 +116,5 @@ export const register = (
 
 //Logout/ Clear Profile
 export const logout = () => (dispatch) => {
-  dispatch({ type: 'CLEAR_PROFILE' });
   dispatch({ type: 'LOGOUT' });
-  dispatch({ type: 'LOADING_EMPLOYEES' });
-  dispatch({ type: ' LOADING_COMMENTS' });
 };

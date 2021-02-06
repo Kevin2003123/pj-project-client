@@ -37,16 +37,17 @@ const Register = ({ register, error }) => {
 
   return (
     <div className='flex flex-col items-center bg-photo '>
-      <div className='transparentCover'></div>
       <div className='flex flex-row mb-16  bg-white border-solid px-2 py-3 mt-0 shadow-md w-full justify-center items-center'>
         <div className='absolute flex flex-row items-center'>
           <i className='fas fa-camera-retro text-blue-500 fa-3x mr-2'></i>
-          <h1 className='title2 font-bold'>Shared Photos </h1>
+          <h1 className='title2 font-bold'>
+            <span className='text-blue-500'>Shared</span> Photos{' '}
+          </h1>
         </div>
 
         <p className='ml-auto mr-2'>
           Have a account ?{' '}
-          <Link to='/' className='ml-2'>
+          <Link to='/login' className='ml-2'>
             <button className='bg-gray-200  px-4 py-2 rounded hover:bg-gray-400 hover:text-white'>
               Sign In
             </button>
