@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url = 'http://localhost:4000/';
+const url = 'https://pj-images-server.herokuapp.com/';
 export const getProfile = (id, page) => async (dispatch) => {
   console.log(id, page);
   const config = {
