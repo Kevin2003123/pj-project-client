@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 import UploadAvatar from '../images/UploadAvatar';
 import UploadImage from '../images/UploadImage';
 import imageLoading from '../../img/loading.gif';
+import perfil from '../../img/perfil.jpg';
+
 const ProfileView = ({
   match,
   profile: { user, images, lastImage },
@@ -52,7 +54,7 @@ const ProfileView = ({
       <UploadImage />
       <div className='flex justify-center items-center mt-12'>
         <img
-          src={user.avatar}
+          src={user.avatar ? user.avatar : perfil}
           alt={user.name}
           className='rounded-full w-36 h-36 mr-4 object-cover'
         />

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Footer from '../layout/Footer';
 import { register } from '../../actions/auth';
 import { connect } from 'react-redux';
 
-const Register = ({ register, error }) => {
+const Register = ({ register, error, isAuthenticated }) => {
   const [alert, setAlert] = useState('hidden');
 
   useEffect(() => {
@@ -34,6 +34,10 @@ const Register = ({ register, error }) => {
     console.log(name, email, password, verifyPassword);
     register(name, email, password, verifyPassword);
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/' />;
+  }
 
   return (
     <div className='flex flex-col items-center bg-photo '>
@@ -148,10 +152,12 @@ const Register = ({ register, error }) => {
 
 Register.propTypes = {
   register: PropTypes.func.isRequired,
-  error: PropTypes.string.isRequired
+  error: PropTypes.string.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  error: state.auth.errors.registerError
+  error: state.auth.errors.registerError,
+  isAuthenticated: state.auth.isAuthenticated
 });
 export default connect(mapStateToProps, { register })(Register);

@@ -23,10 +23,18 @@ const UploadAvatar = ({
     showUploadAvatar('hidden');
     setShowSpin('hidden');
     loadUser();
+    setDisabled(false);
   }, [avatar]);
+
+  useEffect(() => {
+    setDisabled(false);
+    setShowSpin('hidden');
+  }, [uploadAvatarError]);
+
   const [hide, setHide] = useState('');
   const [uploadSuccess, setUploadSuccess] = useState('');
   const [files, setFiles] = useState([]);
+  const [disabled, setDisabled] = useState(false);
 
   const {
     acceptedFiles,
@@ -86,11 +94,14 @@ const UploadAvatar = ({
   }, [uploadAvatar, uploadAvatarError, loadingAvatar]);
 
   const SendImage = () => {
+    setDisabled(true);
     if (acceptedFileItems.length > 0) {
       acceptedFiles.map((file) => updateAvatar(file));
       setShowSpin('');
     } else {
       setUploadSuccess('Unable to upload');
+      setDisabled(false);
+      setShowSpin('hidden');
     }
   };
   return (
@@ -131,12 +142,19 @@ const UploadAvatar = ({
         </div>
 
         <div className='flex flex-row w-full pl-5 py-2 border-t-2'>
-          <button
-            className='mr-3 text-white bg-blue-400 hover:bg-blue-500 rounded px-2 py-1'
-            onClick={() => SendImage()}
-          >
-            Set as profile photo
-          </button>
+          {disabled ? (
+            <button className='mr-3 text-white bg-blue-200  rounded px-2 py-1 cursor-text'>
+              Set as profile photo
+            </button>
+          ) : (
+            <button
+              className='mr-3 text-white bg-blue-400 hover:bg-blue-500 rounded px-2 py-1'
+              onClick={() => SendImage()}
+            >
+              Set as profile photo
+            </button>
+          )}
+
           <button
             className='bg-gray-200 hover:bg-gray-300 rounded px-2 py-1'
             onClick={() => showUploadAvatar('hidden')}
@@ -163,7 +181,7 @@ UploadAvatar.propTypes = {
 };
 const mapStateToProps = (state) => ({
   uploadAvatar: state.image.uploadAvatar,
-  uploadAvatarError: state.image.error,
+  uploadAvatarError: state.image.updateAvatarError,
   loadingAvatar: state.image.loadingAvatar,
   showUpdateAvatar: state.util.showUploadAvatar,
   avatar: state.image.avatar,

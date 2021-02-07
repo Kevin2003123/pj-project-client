@@ -7,7 +7,9 @@ const initialState = {
   images: { images: [], lastImage: null },
   imageUpload: {},
   imageUp: '',
-  loadingImages: true
+  loadingImages: true,
+  updateAvatarError: '',
+  imageUploadError: ''
 };
 
 const image = (state = initialState, action) => {
@@ -38,10 +40,16 @@ const image = (state = initialState, action) => {
         ...state,
         imageUpload: payload
       };
+
+    case 'UPLOAD_IMAGE_FAIL':
+      return {
+        ...state,
+        imageUploadError: payload
+      };
     case 'UPDATE_AVATAR_FAIL':
       return {
         ...state,
-        error: payload,
+        updateAvatarError: payload,
         uploadAvatar: false,
         loadingAvatar: false
       };

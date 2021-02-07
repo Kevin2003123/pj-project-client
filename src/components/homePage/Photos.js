@@ -83,7 +83,7 @@ const Photos = ({
 
         <div className='transparentCover z-10'></div>
       </div>
-      <div className='relative flex flex-wrap '>
+      <div className='relative flex flex-wrap'>
         {images.map((image) => (
           <ImageItems
             image={image}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
 import { showUploadImage } from '../../actions/utils';
@@ -10,13 +10,17 @@ const UploadImage = ({
   user,
   uploadImage,
   page,
-  search
+  search,
+  imageUpload,
+  imageUploadError
 }) => {
   const [form, setForm] = useState({ image_name: '', image_description: '' });
   const [uploadSuccess, setUploadSuccess] = useState('');
   const { image_name, image_description } = form;
   const [files, setFiles] = useState([]);
   const [hideWindow, setHideWindow] = useState('');
+  const [disabled, setDisabled] = useState(false);
+  const [showSpin, setShowSpin] = useState('hidden');
 
   const onChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -25,14 +29,23 @@ const UploadImage = ({
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setDisabled(true);
+    setShowSpin('');
     if (acceptedFileItems.length > 0) {
       acceptedFiles.map((file) =>
         uploadImage(file, image_name, image_description)
       );
     } else {
       setUploadSuccess('Please upload a image');
+      setDisabled(false);
+      setShowSpin('hidden');
     }
   };
+
+  useEffect(() => {
+    setDisabled(false);
+    setShowSpin('hidden');
+  }, [imageUpload, imageUploadError]);
 
   const {
     acceptedFiles,
@@ -139,12 +152,12 @@ const UploadImage = ({
           <div className=' flex relative container border-4 border-dashed drop-image items-center justify-center '>
             <div
               {...getRootProps({
-                className: 'dropzone h-full w-full z-10 cursor-pointer'
+                className: 'dropzone relative h-full w-full z-10 cursor-pointer'
               })}
             >
               <input {...getInputProps()} />
             </div>
-            <div className='flex flex-col absolute items-center z-0'>
+            <div className='flex flex-col absolute items-center z-0 drop-mes'>
               <div className=''>
                 <p>Drag 'n' drop some files here, or click to select files</p>
                 <em>(Only *.jpeg and *.png images will be accepted)</em>
@@ -157,16 +170,28 @@ const UploadImage = ({
                   <ul>{fileRejectionItems}</ul>
                   <ul className='text-red-500'>{uploadSuccess}</ul>
                 </div>
+                <div className={`ml-3 ${showSpin}`}>
+                  <i className='fas fa-spinner spin'></i>
+                </div>
               </div>
             </div>
           </div>
 
           <div className='flex send-upload border-t-2  text-lg py-3'>
-            <input
-              type='submit'
-              value='Upload'
-              className='ml-auto mr-3 rounded py-1 px-4 bg-blue-400 text-white hover:bg-blue-600 cursor-pointer'
-            />
+            {disabled ? (
+              <input
+                type='button'
+                value='Upload'
+                className={`ml-auto mr-3 rounded py-1 px-4 bg-blue-200 text-white  cursor-text`}
+              />
+            ) : (
+              <input
+                type='submit'
+                value='Upload'
+                className={`ml-auto mr-3 rounded py-1 px-4 bg-blue-400 text-white hover:bg-blue-600 cursor-pointer`}
+              />
+            )}
+
             <input
               type='button'
               value='Cancel'
@@ -186,15 +211,20 @@ UploadImage.propTypes = {
   user: PropTypes.object.isRequired,
   uploadImage: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
-  search: PropTypes.string.isRequired
+  search: PropTypes.string.isRequired,
+  imageUpload: PropTypes.object.isRequired,
+  imageUploadError: PropTypes.string.isRequired
 };
 const mapStateToProps = (state) => ({
   showWindow: state.util.showUploadImageWindow,
   user: state.auth.user,
   page: state.util.page,
-  search: state.util.search
+  search: state.util.search,
+  imageUpload: state.image.imageUpload,
+  imageUploadError: state.image.imageUploadError
 });
 
-export default connect(mapStateToProps, { showUploadImage, uploadImage })(
-  UploadImage
-);
+export default connect(mapStateToProps, {
+  showUploadImage,
+  uploadImage
+})(UploadImage);

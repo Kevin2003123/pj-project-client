@@ -51,8 +51,8 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .uploadAvatar-w{
-    width: 70rem;
-    height: 30rem;
+    width: 80%;
+    height: 30%;
 }
 
 
@@ -77,8 +77,7 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 flex-shrink: 1;
 flex-grow: 1;
 height: 20rem;
-min-width: 20%;
-max-width: 50%;
+width: 20%;
 }
 
 
@@ -121,7 +120,7 @@ object-position: center;
 
 
 .upload-w{
-width: 80rem;
+width: 90%;
 height: 31rem;
 }
 
@@ -198,3 +197,111 @@ grid-template-columns: 3fr 2fr;
         max-width: 100%;
         }
 } 
+
+@media(max-width: 775px) and (min-width: 417px){
+   .profile-grid-w{
+    grid-template-columns: 100%;
+    margin-right: 1rem;
+    margin-left: 1rem;
+    width: 100%;
+    }
+    .h-m{
+        display: none;
+    }
+    .profile-grid-w form{
+        border: none;
+        padding: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    .border-image{
+        border: none;
+        padding: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+@media(max-width: 416px){
+    .profile-grid-w{
+        grid-template-columns: 100%;
+        margin-right: 1rem;
+        margin-left: 1rem;
+        width: 100%;
+        }
+        .h-m{
+            display: none;
+        }
+        .profile-grid-w form{
+            border: none;
+            padding: 0;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            display: block;
+        }
+        .border-image{
+            border: none;
+            padding: 0;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            display: block;
+        }
+        .profile-grid-w label, .profile-grid-w input, .profile-grid-w button{
+            width: 100%;
+        }
+
+        .profile-grid-w button{
+            margin-left: 0;
+            margin-top: 0.5rem;
+        }
+
+        .login-input-w{
+            width: 100%;
+        }
+
+        
+}
+
+@media(max-width:800px){
+    .upload-w{
+        width: 100%;
+        height: fit-content;
+        margin: 0;
+        padding: 0;
+        }
+
+        .grid-area{
+            display: grid;
+            grid-template-areas: 'image-name'
+            'image-description'
+            'drop-image'
+            'send-upload';
+            grid-template-rows: 5rem 15rem 20rem 5rem;
+            grid-template-columns: 1fr;
+            width: 100%;
+            height: 100%;
+        margin: 0;
+       padding-left: 0.5rem;
+       padding-right: 0.5rem;
+       row-gap: 0.5rem;
+       margin-top: 1rem;
+            }
+
+            #image_name, #image_description{
+                width: 100% ;
+                margin: 0;
+            }
+
+            .image-name, .image-description{
+                width: 100%;
+                margin: 0;
+            }
+}
+
+@media(max-width:853px){
+    .uploadAvatar-w{
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+    }
+}

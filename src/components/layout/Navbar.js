@@ -11,6 +11,8 @@ import {
 import { getImages } from '../../actions/images';
 import UploadImage from '../images/UploadImage';
 import { logout } from '../../actions/auth';
+import perfil from '../../img/perfil.jpg';
+
 const Navbar = ({
   isAuthenticated,
   user,
@@ -54,7 +56,9 @@ const Navbar = ({
   return (
     <div className='w-full relative '>
       <nav className=' bg-gray-800 flex flex-row py-2 items-center relative h-20'>
-        <i className='fas fa-camera-retro text-blue-600 ml-3 fa-3x m-0 p-0  m-0 p-0 z-40'></i>
+        <Link className='z-40' to='/'>
+          <i className='fas fa-camera-retro text-blue-500 ml-3 fa-3x m-0 p-0  m-0 p-0 z-40 hover:text-blue-600'></i>
+        </Link>
         <div className='bg-white logo-w ml-3 absolute z-30 '></div>
 
         <h1 className=' font-bold text-lg text-white ml-2 nav-title d-sm'>
@@ -74,7 +78,7 @@ const Navbar = ({
         <img
           className={`ml-auto mr-3 rounded-full h-14 w-14 flex items-center justify-center cursor-pointer object-cover ${showUser}`}
           onClick={() => dropDown()}
-          src={user.avatar}
+          src={user.avatar ? user.avatar : perfil}
           alt={user.name}
         />
       </nav>
@@ -84,7 +88,7 @@ const Navbar = ({
       >
         <div className='relative flex flex-row justify-center h-16 mt-3 '>
           <img
-            src={user.avatar}
+            src={user.avatar ? user.avatar : perfil}
             alt={user.name}
             className='rounded-full h-16 w-16 object-cover'
           />
@@ -110,6 +114,11 @@ const Navbar = ({
         >
           Upload image
         </div>
+        <Link to={`/profile/view/${user.id}`}>
+          <div className='border rounded-full py-1 px-4 mt-3 hover:bg-gray-100 cursor-pointer'>
+            My images
+          </div>
+        </Link>
         <hr className='w-full mt-5' />
 
         <button

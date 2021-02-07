@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
 import loading from '../../img/loading.gif';
+import perfil from '../../img/perfil.jpg';
 const ImageItems = ({ image, loadingImages }) => {
   const [show, setShow] = useState('hidden');
 
   return (
     <div
-      className='relative bg-black mx-1 mt-1 min-width'
+      className='relative  mt-1 mx-1 min-width'
       onMouseEnter={() => setShow('')}
       onMouseLeave={() => setShow('hidden')}
     >
@@ -24,11 +25,11 @@ const ImageItems = ({ image, loadingImages }) => {
       )}
 
       <span
-        className={`flex flex-row items-center absolute bottom-0 left-0  text-white w-full bg-black bg-opacity-50 ${show}`}
+        className={`flex flex-row items-center absolute bottom-0 left-0  text-white w-full bg-black bg-opacity-50 ${show} `}
       >
         <Link to={`/profile/view/${image.user_id}`}>
           <img
-            src={image.avatar}
+            src={image.avatar ? image.avatar : perfil}
             alt={image.name}
             className='ml-3 w-10 h-10 my-2 rounded-full mr-3 cursor-pointer object-cover'
           />
