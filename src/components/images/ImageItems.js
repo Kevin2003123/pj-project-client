@@ -15,7 +15,7 @@ const ImageItems = ({ image, loadingImages }) => {
       onMouseEnter={() => setShow('')}
       onMouseLeave={() => setShow('hidden')}
     >
-      <a href={image.src} className=''>
+      <a href={image.src} className='' target='_blank'>
         <img
           src={image.src}
           alt=''
