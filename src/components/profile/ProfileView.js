@@ -67,11 +67,15 @@ const ProfileView = ({
 
       <div className='flex flex-wrap'>
         {images.map((image) => (
-          <img
-            src={image.src}
-            alt=''
-            className='min-width mt-1 mx-1 object-cover'
-          />
+          <div className='min-width mt-1 mx-1 '>
+            <a href={image.src} className='' target='_blank'>
+              <img
+                src={image.src}
+                alt=''
+                className='w-full h-full object-cover'
+              />
+            </a>
+          </div>
         ))}
       </div>
       <nav className='flex flex-row bg-white shadow-md w-64 mx-auto justify-center rounded-full border bg-blue-500 mb-4 font-bold text-white mt-4'>

@@ -40,8 +40,8 @@ const Register = ({ register, error, isAuthenticated }) => {
   }
 
   return (
-    <div className='flex flex-col items-center bg-photo '>
-      <div className='flex flex-row mb-16  bg-white border-solid px-2 py-3 mt-0 shadow-md w-full justify-center items-center auth-box'>
+    <div className='flex flex-col items-center bg-photo w-full h-full'>
+      <div className='flex flex-row mb-16  bg-white border-solid px-2 py-3 mt-0 shadow-md w-full justify-center items-center auth-box w-full h-full'>
         <div className='absolute flex flex-row items-center'>
           <i className='fas fa-camera-retro text-blue-500 fa-3x mr-2'></i>
           <h1 className='title2 font-bold'>
