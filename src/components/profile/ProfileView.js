@@ -44,11 +44,11 @@ const ProfileView = ({
     }
   };
   return loading ? (
-    <div className='flex items-center justify-center h-screen'>
+    <div className='flex items-center justify-center h-screen w-full'>
       <img src={imageLoading} alt='loading' width='100rem' />
     </div>
   ) : (
-    <div className='flex flex-col h-screen'>
+    <div className='flex flex-col h-full w-full'>
       <Navbar />
       <UploadAvatar />
       <UploadImage />

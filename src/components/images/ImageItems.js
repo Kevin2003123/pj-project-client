@@ -5,24 +5,23 @@ import loading from '../../img/loading.gif';
 import perfil from '../../img/perfil.jpg';
 const ImageItems = ({ image, loadingImages }) => {
   const [show, setShow] = useState('hidden');
-
-  return (
+  return loadingImages ? (
+    <div className='relative min-width mt-1 mx-1 flex items-center justify-center'>
+      <img src={loading} alt='loading gift' className='' />
+    </div>
+  ) : (
     <div
       className='relative  mt-1 mx-1 min-width'
       onMouseEnter={() => setShow('')}
       onMouseLeave={() => setShow('hidden')}
     >
-      {loadingImages ? (
-        <img src={loading} alt='loading gift' className='relative img-w' />
-      ) : (
-        <a href={image.src} className=''>
-          <img
-            src={image.src}
-            alt=''
-            className='relative cursor-pointer img-w '
-          />
-        </a>
-      )}
+      <a href={image.src} className=''>
+        <img
+          src={image.src}
+          alt=''
+          className='relative cursor-pointer img-w '
+        />
+      </a>
 
       <span
         className={`flex flex-row items-center absolute bottom-0 left-0  text-white w-full bg-black bg-opacity-50 ${show} `}

@@ -1,56 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bree+Serif&family=Yusei+Magic&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-body, html{
+
+body,
+html {
     width: 100%;
     height: 100%;
     position: relative;
 }
-*{
+
+* {
     box-sizing: border-box;
 }
-.title1{
+
+.title1 {
     font-size: 3rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.title2{
+
+.title2 {
     font-size: 2rem;
     font-family: 'Yusei Magic', sans-serif;
 }
 
-.label{
-font-size: 1.5rem;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.label {
+    font-size: 1.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.login-w{
+.login-w {
     width: 25rem;
     height: 34rem;
 }
 
-.register-w{
+.register-w {
     width: 25rem;
     height: 50rem;
 }
 
-.logo-w{
+.logo-w {
     width: 3rem;
     height: 2.5rem;
     border-radius: 5px;
     z-index: 1;
 }
 
-.search-w{
+.search-w {
     width: 70%;
     height: 2.5rem;
     text-transform: uppercase;
 }
 
-.login-input-w{
+.login-input-w {
     width: 20rem;
 }
 
-.uploadAvatar-w{
+.uploadAvatar-w {
     width: 80%;
     height: 30%;
 }
@@ -61,266 +66,303 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-size: cover;
     position: relative;
     z-index: 1;
-  }
-
-
-  .transparentCover {
-  background-color: rgba(0, 0, 0, 0.37) ;
-  position: absolute;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
 }
 
 
-.min-width{
-flex-shrink: 1;
-flex-grow: 1;
-height: 20rem;
-width: 20%;
+.transparentCover {
+    background-color: rgba(0, 0, 0, 0.37);
+    position: absolute;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 }
 
 
-.img-w{
-  
-  height: 100%;
-   width: 100%;
-   object-fit: cover;
-   
-
-}  
-
-.h-screen-landing-img{
-width: 100vw;
-height: 90vh;
-object-fit: cover;
-object-position: center;
+.min-width {
+    flex-shrink: 1;
+    flex-grow: 1;
+    height: 20rem;
+    width: 20%;
 }
 
-.center{
+
+.img-w {
+
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+
+}
+
+.h-screen-landing-img {
+    width: 100vw;
+    height: 90vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.center {
     top: 50%;
     left: 50%;
 }
 
-.title{
+.title {
     font-family: 'Yusei Magic', sans-serif;
 }
 
-.nav-title{
-    font-family:'Yusei Magic', sans-serif ;
+.nav-title {
+    font-family: 'Yusei Magic', sans-serif;
 }
 
-.welcome{
+.welcome {
     font-family: 'Bree Serif', serif;
 }
 
-.profile-name{
+.profile-name {
     font-family: 'Roboto', sans-serif;
 }
 
 
-.upload-w{
-width: 90%;
-height: 31rem;
+.upload-w {
+    width: 90%;
+    height: 31rem;
 }
 
-.image-name{
-    grid-area:image-name;
+.image-name {
+    grid-area: image-name;
 }
-.image-description{
+
+.image-description {
     grid-area: image-description;
 }
-.drop-image{
+
+.drop-image {
     grid-area: drop-image;
 }
-.send-upload{
-    grid-area: send-upload; 
-}
-.grid-area{
-grid-template-areas: 'image-name  drop-image drop-image'
-'image-description drop-image drop-image'
-'send-upload send-upload send-upload';
-grid-template-rows: 0.5fr 1fr 4rem;
-grid-template-columns: 1fr 2fr 1fr;
+
+.send-upload {
+    grid-area: send-upload;
 }
 
-.upload-image-w{
+.grid-area {
+    grid-template-areas: 'image-name  drop-image drop-image'
+        'image-description drop-image drop-image'
+        'send-upload send-upload send-upload';
+    grid-template-rows: 0.5fr 1fr 4rem;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.upload-image-w {
     width: 100%;
     height: 82%;
 }
-.upload-avatar-m{
+
+.upload-avatar-m {
     margin-top: 7rem;
 }
-.scroll{
-overflow-y: hidden;
-height: 100vh;
-}
-.profile-grid-w{
-grid-template-columns: 3fr 2fr;
+
+.scroll {
+    overflow-y: hidden;
+    height: 100vh;
 }
 
-.spin{
-    
-    -webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 4s linear infinite;
-    animation:spin 4s linear infinite;
-}
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
-
-@media only screen and (max-width: 540px) and (min-width:500px){
-.d-sm{
-    display: none;
-}
-.sm-ml{
-    margin-left: 0.75rem;
-}
+.profile-grid-w {
+    grid-template-columns: 3fr 2fr;
 }
 
-@media only screen and (max-width: 499px){
-    .d-sm{
+.spin {
+
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@media only screen and (max-width: 540px) and (min-width:500px) {
+    .d-sm {
         display: none;
     }
-    .sm-ml{
+
+    .sm-ml {
+        margin-left: 0.75rem;
+    }
+}
+
+@media only screen and (max-width: 499px) {
+    .d-sm {
+        display: none;
+    }
+
+    .sm-ml {
         margin-left: 0.75rem;
         font-size: 0.90rem;
     }
 }
 
-@media(max-width: 850px){
-    .min-width{
+@media(max-width: 850px) {
+    .min-width {
         flex-shrink: 1;
         flex-grow: 1;
         height: 20rem;
         min-width: 50%;
         max-width: 100%;
-        }
-} 
-
-@media(max-width: 775px) and (min-width: 417px){
-   .profile-grid-w{
-    grid-template-columns: 100%;
-    margin-right: 1rem;
-    margin-left: 1rem;
-    width: 100%;
-    }
-    .h-m{
-        display: none;
-    }
-    .profile-grid-w form{
-        border: none;
-        padding: 0;
-        margin-left: 1rem;
-        margin-right: 1rem;
-    }
-    .border-image{
-        border: none;
-        padding: 0;
-        margin-left: 1rem;
-        margin-right: 1rem;
     }
 }
 
-@media(max-width: 416px){
-    .profile-grid-w{
+@media(max-width: 775px) and (min-width: 417px) {
+    .profile-grid-w {
         grid-template-columns: 100%;
         margin-right: 1rem;
         margin-left: 1rem;
         width: 100%;
-        }
-        .h-m{
-            display: none;
-        }
-        .profile-grid-w form{
-            border: none;
-            padding: 0;
-            margin-left: 1rem;
-            margin-right: 1rem;
-            display: block;
-        }
-        .border-image{
-            border: none;
-            padding: 0;
-            margin-left: 1rem;
-            margin-right: 1rem;
-            display: block;
-        }
-        .profile-grid-w label, .profile-grid-w input, .profile-grid-w button{
-            width: 100%;
-        }
+    }
 
-        .profile-grid-w button{
-            margin-left: 0;
-            margin-top: 0.5rem;
-        }
+    .h-m {
+        display: none;
+    }
 
-        .login-input-w{
-            width: 100%;
-        }
+    .profile-grid-w form {
+        border: none;
+        padding: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 
-        
+    .border-image {
+        border: none;
+        padding: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }
 
-@media(max-width:800px){
-    .upload-w{
+@media(max-width: 416px) {
+    .profile-grid-w {
+        grid-template-columns: 100%;
+        margin-right: 1rem;
+        margin-left: 1rem;
+        width: 100%;
+    }
+
+    .h-m {
+        display: none;
+    }
+
+    .profile-grid-w form {
+        border: none;
+        padding: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        display: block;
+    }
+
+    .border-image {
+        border: none;
+        padding: 0;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        display: block;
+    }
+
+    .profile-grid-w label,
+    .profile-grid-w input,
+    .profile-grid-w button {
+        width: 100%;
+    }
+
+    .profile-grid-w button {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+
+    .login-input-w {
+        width: 100%;
+    }
+
+
+}
+
+@media(max-width:800px) {
+    .upload-w {
         width: 100%;
         height: fit-content;
         margin: 0;
         padding: 0;
-        }
+    }
 
-        .grid-area{
-            display: grid;
-            grid-template-areas: 'image-name'
+    .grid-area {
+        display: grid;
+        grid-template-areas: 'image-name'
             'image-description'
             'drop-image'
             'send-upload';
-            grid-template-rows: 5rem 15rem 20rem 5rem;
-            grid-template-columns: 1fr;
-            width: 100%;
-            height: 100%;
+        grid-template-rows: 5rem 15rem 20rem 5rem;
+        grid-template-columns: 1fr;
+        width: 100%;
+        height: 100%;
         margin: 0;
-       padding-left: 0.5rem;
-       padding-right: 0.5rem;
-       row-gap: 0.5rem;
-       margin-top: 1rem;
-            }
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        row-gap: 0.5rem;
+        margin-top: 1rem;
+    }
 
-            #image_name, #image_description{
-                width: 100% ;
-                margin: 0;
-            }
+    #image_name,
+    #image_description {
+        width: 100%;
+        margin: 0;
+    }
 
-            .image-name, .image-description{
-                width: 100%;
-                margin: 0;
-            }
+    .image-name,
+    .image-description {
+        width: 100%;
+        margin: 0;
+    }
 }
 
-@media(max-width:853px){
-    .uploadAvatar-w{
+@media(max-width:853px) {
+    .uploadAvatar-w {
         width: 100%;
         height: 100vh;
         margin: 0;
     }
 }
 
-@media(max-width:849px) and (min-width:576px){
-    .auth-box{
+@media(max-width:849px) and (min-width:576px) {
+    .auth-box {
         justify-content: space-between;
     }
 }
 
-@media(max-width:575px){
-    .auth-box{
+@media(max-width:575px) {
+    .auth-box {
         justify-content: space-between;
     }
 
-    .title2{
+    .title2 {
         display: none;
     }
-    .auth-text{
+
+    .auth-text {
         text-align: center;
         font-size: 0.8rem;
     }
