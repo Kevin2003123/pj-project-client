@@ -39,7 +39,7 @@ const Login = ({ login, error, isAuthenticated }) => {
 
   return (
     <div className='flex flex-col items-center bg-photo h-screen'>
-      <div className='flex flex-row  shadow-md bg-white  px-2 py-3 mt-0 border-b-2  w-full justify-center items-center '>
+      <div className='auth-box flex flex-row  shadow-md bg-white  px-2 py-3 mt-0 border-b-2  w-full justify-center items-center '>
         <div className='absolute flex flex-row items-center'>
           <i className='fas fa-camera-retro text-blue-500 fa-3x mr-2'></i>
           <h1 className='title2 font-bold'>
@@ -47,14 +47,14 @@ const Login = ({ login, error, isAuthenticated }) => {
           </h1>
         </div>
 
-        <p className='ml-auto mr-2'>
-          Don't have a account ?{' '}
+        <div className='ml-auto mr-2 flex items-center'>
+          <p className='auth-text'>Don't have a account ?</p>
           <Link to='/register' className='ml-2'>
             <button className='bg-gray-200  px-4 py-2 rounded hover:bg-gray-400 hover:text-white'>
               Sign Up
             </button>
           </Link>
-        </p>
+        </div>
       </div>
       <div className='mt-auto mb-auto flex flex-col items-center justify-center mb-20 bg-white border-solid  border-gray-300 rounded-md  shadow-lg '>
         <div className=' flex flex-col justify-center pt-5 px-12 pb-5 items-center '>

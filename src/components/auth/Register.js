@@ -41,7 +41,7 @@ const Register = ({ register, error, isAuthenticated }) => {
 
   return (
     <div className='flex flex-col items-center bg-photo '>
-      <div className='flex flex-row mb-16  bg-white border-solid px-2 py-3 mt-0 shadow-md w-full justify-center items-center'>
+      <div className='flex flex-row mb-16  bg-white border-solid px-2 py-3 mt-0 shadow-md w-full justify-center items-center auth-box'>
         <div className='absolute flex flex-row items-center'>
           <i className='fas fa-camera-retro text-blue-500 fa-3x mr-2'></i>
           <h1 className='title2 font-bold'>
@@ -49,14 +49,14 @@ const Register = ({ register, error, isAuthenticated }) => {
           </h1>
         </div>
 
-        <p className='ml-auto mr-2'>
-          Have a account ?{' '}
+        <div className='ml-auto mr-2  flex items-center'>
+          <p className='auth-text'>Have a account ? </p>
           <Link to='/login' className='ml-2'>
             <button className='bg-gray-200  px-4 py-2 rounded hover:bg-gray-400 hover:text-white'>
               Sign In
             </button>
           </Link>
-        </p>
+        </div>
       </div>
       <div className='flex flex-col items-center justify-center mb-20 bg-white border-solid  border-gray-300 rounded-md  shadow-lg '>
         <div className=' flex flex-col justify-center px-12 py-5 pt-5 items-center '>

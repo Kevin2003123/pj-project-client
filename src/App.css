@@ -305,3 +305,23 @@ grid-template-columns: 3fr 2fr;
         margin: 0;
     }
 }
+
+@media(max-width:849px) and (min-width:576px){
+    .auth-box{
+        justify-content: space-between;
+    }
+}
+
+@media(max-width:575px){
+    .auth-box{
+        justify-content: space-between;
+    }
+
+    .title2{
+        display: none;
+    }
+    .auth-text{
+        text-align: center;
+        font-size: 0.8rem;
+    }
+}
